@@ -1,3 +1,5 @@
+import { users } from '../jsonData';
+
 //creating an interface 
 export interface userDetail {
     firstName: string,
@@ -17,17 +19,17 @@ export class myService {
     public static getUserDetail(username: string): Promise<userDetail> {
         return new Promise<userDetail | errorObject>((resolve, reject) => {
             if (username === 'aman') {
-                let amanDetail = {
-                    firstName: 'Ranjeet',
-                    lastName: 'Singh',
-                    age: 29,
-                    sex: 'Male',
-                    role: 'Web developer'
-                };
-                resolve(amanDetail);
+                resolve(users[0]);
             } else {
                 resolve({error: 'No user exist with '+ username});
             }
+        });
+    }
+
+// get all users
+        public static getAllUserDetail(): Promise<userDetail[]> {
+        return new Promise<userDetail[] | errorObject>((resolve, reject) => {
+                resolve(users);
         });
     }
 }
